@@ -1,0 +1,50 @@
+﻿@model PagedList<ProCateNimapInfoTech.Models.Category>
+
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Category List";
+}
+
+<h2>Details</h2>
+
+
+<p>
+    @Html.ActionLink("Create New", "CreateCat")
+</p>
+
+<table class="table" border="1">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().CategoryName)
+
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Action)*@
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PK_CategoryId }, new { @class = "btn btn-primary" }) |
+
+                @Html.ActionLink("Delete", "Delete", "SimpleCatMasterCRUD", new { id = item.PK_CategoryId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.PagedListPager(Model, pageNumber => Url.Action("Details", "SimpleCatMasterCRUD", new { pageNumber }))
+
+
+
+
+

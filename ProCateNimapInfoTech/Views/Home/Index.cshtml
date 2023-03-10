@@ -1,0 +1,51 @@
+﻿@model PagedList<ProCateNimapInfoTech.Models.ListCatPro>
+
+
+
+
+@using PagedList.Mvc;
+@using PagedList;
+
+<h2>Details</h2>
+
+<div class="container">
+    <table class="table" border="1" align="center">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().PK_ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ProdctName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().PK_CategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CategoryName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PK_ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProdctName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PK_CategoryId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+
+            </tr>
+        }
+
+
+    </table>
+</div>
+@Html.PagedListPager(Model, pageNumber => Url.Action("Index", "Home", new { pageNumber }))
